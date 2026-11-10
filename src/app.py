@@ -160,7 +160,7 @@ with tab1:
         if feature_importances[idx] > 0:
             code_str = idx2code.get(idx, str(idx))
             chart_list.append({
-                "Bệnh lý Lịch sử": f"{get_disease_name(code_str)} ({code_str})",
+                "Bệnh lý Lịch sử": get_disease_name(code_str),
                 "Mức độ ảnh hưởng": float(feature_importances[idx])
             })
     if chart_list:
@@ -179,5 +179,5 @@ st.divider()
 # --- LEVEL 4: LỊCH SỬ KHÁM CHI TIẾT ---
 with st.expander("Level 4: Xem toàn bộ Lịch sử Mã ICD-9 Quá khứ"):
     for idx, visit in enumerate(patient_seq):
-        readable_visit = [f"{code} ({get_disease_name(code)})" for code in visit]
+        readable_visit = [f"• {get_disease_name(code)}" for code in visit]
         st.write(f"• **Lượt khám {idx + 1}:** {', '.join(readable_visit)}")
